@@ -7,9 +7,6 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean
 
-RUN systemctl enable postfix \
-    && service postfix start
-
 VOLUME ["/etc/postfix"]
 
 EXPOSE 25
