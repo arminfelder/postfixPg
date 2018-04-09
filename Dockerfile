@@ -7,8 +7,10 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean
 
+ADD run.sh .
+
 VOLUME ["/etc/postfix"]
 
 EXPOSE 25
 
-CMD ["/usr/sbin/postfix","start"]
+CMD ["/run.sh"]
