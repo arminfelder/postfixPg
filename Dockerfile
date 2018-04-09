@@ -7,10 +7,8 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean
 
-ADD run.sh .
-
 VOLUME ["/etc/postfix"]
 
 EXPOSE 25
 
-CMD ["/run.sh"]
+CMD ["sh", "-c", "service syslog-ng start ; service postfix start ; tail -F /var/log/mail.log"]
