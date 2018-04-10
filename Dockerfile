@@ -3,7 +3,9 @@ FROM debian:stable-slim
 RUN apt-get update \
     && apt-get install \
     postfix \
-    postfix-pgsql -y \
+    postfix-pgsql \
+    rsyslog \
+    syslog-ng -y \
     && apt-get autoremove -y \
     && apt-get clean
 
