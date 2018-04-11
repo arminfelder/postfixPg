@@ -4,9 +4,8 @@ RUN apt-get update \
     && apt-get install \
     postfix \
     postfix-pgsql \
-    rsyslog \
-    syslog-ng -y \
-    && apt-get autoremove -y --force-yes \
+    syslog-ng -y --force-yes \ 
+    && apt-get autoremove -y \
     && apt-get clean
 
 VOLUME ["/etc/postfix"]
