@@ -1,10 +1,10 @@
-FROM debian:stable-slim
+FROM debian:bullseye-slim
 
 RUN apt-get update \
-    && apt-get install \
+    && DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get install \
     postfix \
     postfix-pgsql \
-    syslog-ng -y --force-yes \ 
+    syslog-ng -y --force-yes --no-install-recommends \
     && apt-get autoremove -y \
     && apt-get clean
 
@@ -14,4 +14,4 @@ EXPOSE 25
 EXPOSE 465
 EXPOSE 587
 
-CMD ["sh", "-c", "service syslog-ng start ; service postfix start ; tail -F /var/log/mail.log"]
+CMD ["postfix", "start-fg"]
