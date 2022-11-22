@@ -8,10 +8,14 @@ RUN apt-get update \
     && apt-get autoremove -y \
     && apt-get clean
 
+COPY run.sh /run.sh
+
+RUN chmod +x /run.sh
+
 VOLUME ["/etc/postfix"]
 
 EXPOSE 25
 EXPOSE 465
 EXPOSE 587
 
-CMD ["postfix", "start-fg"]
+CMD ["/run.sh"]
